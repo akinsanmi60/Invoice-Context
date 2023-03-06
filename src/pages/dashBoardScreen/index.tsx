@@ -6,8 +6,6 @@ import InvoiceIcon from "../../Icons/InvoiceIcon";
 import Button from "../../common/Button/Button";
 import { useDisclosure } from "@chakra-ui/react";
 import { DrawerScreen } from "../../common/Drawer";
-import TestComp from "../../DashboardComponents/test";
-import QuickAddClient from "../../DashboardComponents/QuickAddClient";
 
 function DashboardScreen() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -43,8 +41,6 @@ function DashboardScreen() {
         </div>
         <div className="w-full pl-4 pr-4 mb-4 sm:mb-1">
           <DashboardWidgets />
-          <TestComp />
-          <QuickAddClient />
         </div>
       </div>
       <DrawerScreen isOpen={isOpen} onClose={onClose} />

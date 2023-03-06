@@ -34,7 +34,9 @@ function Button(props: ButtonProps) {
     }
 
     if (size === "small") {
-      defaultClasses += " text-sm h-8 px-2 ";
+      defaultClasses += " text-sm h-8 px-2";
+    } else if (size === "xsmall") {
+      defaultClasses += " text-sm h-12 px-2 w-[20%]";
     } else {
       defaultClasses += " h-12 px-2";
     }
@@ -63,10 +65,10 @@ function Button(props: ButtonProps) {
   return (
     <motion.button
       whileHover={{
-        scale: size === "small" ? 1.02 : 1.1,
+        scale: size === "small" ? 1.02 : 1.04,
         transition: {
           type: "spring",
-          damping: 15,
+          damping: 18,
           duration: 0.1,
         },
       }}

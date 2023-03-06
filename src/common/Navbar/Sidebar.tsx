@@ -20,17 +20,17 @@ const NAV_DATA = [
   },
   {
     title: "Invoices",
-    link: "invoices",
+    link: "invoicelist",
     Icon: InvoiceIcon,
   },
   {
     title: "Clients",
-    link: "clients",
+    link: "clientslist",
     Icon: ClientPlusIcon,
   },
   {
     title: "Products",
-    link: "products",
+    link: "productlist",
     Icon: ProductIcon,
   },
 ];
@@ -67,7 +67,7 @@ function Sidebar() {
       >
         <div className="mb-[-15px]">
           <motion.span
-            className="font-bold text-[28px] sm:text-[21px] leading-[21px] flex justify-center items-center"
+            className="font-bold text-[26px] sm:text-[21px] leading-[21px] flex justify-center items-center"
             initial={{
               translateX: -300,
             }}

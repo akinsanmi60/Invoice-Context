@@ -19,7 +19,11 @@ export type ClientFormValue = Pick<
 >;
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-function QuickAddClient() {
+type Props = {
+  pageType?: string;
+};
+
+function QuickAddClient({ pageType }: Props) {
   const {
     register,
     handleSubmit,
@@ -52,9 +56,12 @@ function QuickAddClient() {
   };
 
   return (
-    <div className="bg-white rounded-xl px-0">
-      <SectionTitle className="text-center">Client Details </SectionTitle>
-
+    <div
+      className={pageType === "clientslist" ? "" : "bg-white rounded-xl px-0"}
+    >
+      <SectionTitle className="text-center">
+        {pageType === "clientslist" ? "Quick Add Client" : "Client Details "}
+      </SectionTitle>
       <form onSubmit={handleSubmit(submitHandler)}>
         <div className="mt-[15px] mb-[13px]">
           <ImageUpload
@@ -68,11 +75,9 @@ function QuickAddClient() {
         <div className={errors ? "mt-2" : "mt-4"}>
           <div className="flex-1">
             <input
-              autoComplete="nope"
+              autoComplete="off"
               className={
-                isTouched && errors.name
-                  ? defaultInputInvalidStyle
-                  : defaultInputStyle
+                errors.name ? defaultInputInvalidStyle : defaultInputStyle
               }
               placeholder="Name"
               {...register("name", { required: true })}
@@ -88,12 +93,10 @@ function QuickAddClient() {
         <div className={errors ? "mt-2" : "mt-4"}>
           <div className="flex-1">
             <input
-              autoComplete="nope"
+              autoComplete="off"
               placeholder="Email Address"
               className={
-                isTouched && errors.email
-                  ? defaultInputInvalidStyle
-                  : defaultInputStyle
+                errors.email ? defaultInputInvalidStyle : defaultInputStyle
               }
               {...register("email", {
                 required: true,
@@ -111,12 +114,10 @@ function QuickAddClient() {
         <div className={errors ? "mt-2" : "mt-4"}>
           <div className="flex-1">
             <input
-              autoComplete="nope"
+              autoComplete="off"
               placeholder="Mobile No"
               className={
-                isTouched && errors.mobileNo
-                  ? defaultInputInvalidStyle
-                  : defaultInputStyle
+                errors.mobileNo ? defaultInputInvalidStyle : defaultInputStyle
               }
               {...register("mobileNo", {
                 required: true,
@@ -134,10 +135,10 @@ function QuickAddClient() {
         <div className={errors ? "mt-2" : "mt-4"}>
           <div className="flex-1">
             <input
-              autoComplete="nope"
+              autoComplete="off"
               placeholder="Billing Address"
               className={
-                isTouched && errors.billingAddress
+                errors.billingAddress
                   ? defaultInputInvalidStyle
                   : defaultInputStyle
               }

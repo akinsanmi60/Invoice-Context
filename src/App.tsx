@@ -1,20 +1,19 @@
-import { useDisclosure } from "@chakra-ui/react";
-import { useCallback } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AppContainer from "./Container/AppContainer";
+import ClientListScreen from "./pages/clients";
 import DashboardScreen from "./pages/dashBoardScreen";
+import InvoiceListScreen from "./pages/invoices/InvoiceListScreen";
+import ProductListScreen from "./pages/products/ProductListScreen";
 
 function App() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const handleQuickAdd = useCallback(() => {
-    onOpen();
-  }, [onOpen]);
-
   return (
     <div>
       <AppContainer>
         <Routes>
           <Route path="/" element={<DashboardScreen />} />
+          <Route path="/clientslist" element={<ClientListScreen />} />
+          <Route path="/invoicelist" element={<InvoiceListScreen />} />
+          <Route path="/productlist" element={<ProductListScreen />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AppContainer>

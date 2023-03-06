@@ -69,9 +69,7 @@ function QuickEditCompany() {
             autoComplete="nope"
             placeholder="Company Name"
             className={
-              isTouched && errors.companyName
-                ? defaultInputInvalidStyle
-                : defaultInputStyle
+              errors.companyName ? defaultInputInvalidStyle : defaultInputStyle
             }
             {...register("companyName", { required: true })}
           />
@@ -86,9 +84,7 @@ function QuickEditCompany() {
             autoComplete="nope"
             placeholder="Email Address"
             className={
-              errors.email && isTouched
-                ? defaultInputInvalidStyle
-                : defaultInputStyle
+              errors.email ? defaultInputInvalidStyle : defaultInputStyle
             }
             {...register("email", { required: true, pattern: EMAIL_REGEX })}
           />
@@ -103,7 +99,7 @@ function QuickEditCompany() {
             autoComplete="nope"
             placeholder="Mobile No"
             className={
-              isTouched && errors.companyMobile
+              errors.companyMobile
                 ? defaultInputInvalidStyle
                 : defaultInputStyle
             }

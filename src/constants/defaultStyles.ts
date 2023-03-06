@@ -20,14 +20,13 @@ export const defaultInputSmInvalidStyle =
 
 // Default Table Styles
 export const defaultTdStyle =
-  "text-sm sm:text-left text-default-color font-title flex flex-wrap flex-row flex-1 whitespace-nowrap text-ellipsis overflow-hidden mb-1";
+  "text-sm text-left flex text-default-color flex-1 whitespace-nowrap text-ellipsis";
 export const defaultTdActionStyle =
-  "text-sm sm:text-left text-default-color font-title flex flex-row sm:w-11";
+  "text-sm text-left text-default-color font-title flex flex-row w-11";
 export const defaultTdWrapperStyle =
-  "w-full flex flex-wrap flex-col sm:flex-row my-2 bg-white rounded-xl py-2 px-3 sm:px-0 sm:py-0";
-export const defaultTdContent =
-  "sm:w-full w-1/2 flex flex-wrap flex-row items-center";
+  "w-full flex my-2 bg-white rounded-xl py-2 px-0";
+export const defaultTdContent = "w-full flex items-center";
 export const defaultTdContentTitleStyle =
-  "sm:hidden w-1/2 flex flex-row items-center";
+  "hidden w-1/2 flex flex-row items-center";
 
 export const IconStyle = { top: -2, position: "relative", marginRight: 2 };

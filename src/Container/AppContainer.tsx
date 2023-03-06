@@ -41,7 +41,7 @@ function AppContainer({ children }: CProps) {
       >
         <div
           className={
-            "container mx-auto " +
+            "container mx-auto" +
             (showNavbar
               ? "scale-100 origin-top ease-in md:origin-center md:scale-100"
               : "")
