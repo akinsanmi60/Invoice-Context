@@ -1,8 +1,6 @@
 import React from "react";
 
-function DollarIcon(
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) {
+function DollarIcon(props: any) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

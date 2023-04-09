@@ -10,14 +10,20 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 import "./index.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { AppContextProvider } from "./context/AppContext";
+import { ApiProvider } from "./context/clientDataContext";
+import { InvoiceProvider } from "./context/invoiceDataContext";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider>
-        <AppContextProvider>
-          <App />
-        </AppContextProvider>
+        <ApiProvider>
+          <InvoiceProvider>
+            <AppContextProvider>
+              <App />
+            </AppContextProvider>
+          </InvoiceProvider>
+        </ApiProvider>
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>,

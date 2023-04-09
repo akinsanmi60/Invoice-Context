@@ -1,8 +1,6 @@
 import React from "react";
 
-function PlusCircleIcon(
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) {
+function PlusCircleIcon(props: any) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

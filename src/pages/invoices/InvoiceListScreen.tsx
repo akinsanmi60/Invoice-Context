@@ -13,7 +13,7 @@ function InvoiceListScreen() {
 
       <div className="flex flex-wrap">
         <div className="w-full px-4 mb-4 sm:mb-1">
-          <InvoiceTable />
+          <InvoiceTable showAdvanceSearch />
         </div>
       </div>
     </div>

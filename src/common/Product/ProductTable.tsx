@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import {
   defaultTdStyle,
@@ -62,14 +62,14 @@ function ProductTable({ showAdvanceSearch = false }) {
 
   useEffect(() => {
     let filterData = productData.length > 0 ? productData : [];
-    if (formData.name !== "") {
+    if (formData.name) {
       filterData = productData.filter(productItem => {
         return productItem?.name
           ?.toLowerCase()
           ?.includes(formData.name?.toLowerCase());
       });
     }
-    if (formData.productID !== "") {
+    if (formData.productID) {
       filterData = productData.filter(productItem => {
         return productItem?.productID?.includes(formData.productID);
       });
@@ -96,32 +96,34 @@ function ProductTable({ showAdvanceSearch = false }) {
 
   return (
     <>
-      <div className="bg-white rounded-xl p-3 mb-3">
-        <div className="font-title mb-2">Advanced Search</div>
-        <div className="flex w-full">
-          <div className="mb-2 sm:mb-0 sm:text-left text-default-color flex flex-row  font-title flex-1 px-2">
-            <div className="h-12 w-12 rounded-[50%] bg-gray-100 mr-2 flex justify-center items-center text-gray-400">
-              <ProductIDIcon />
+      {showAdvanceSearch && (
+        <div className="bg-white rounded-xl p-3 mb-3">
+          <div className="font-title mb-2">Advanced Search</div>
+          <div className="flex w-full">
+            <div className="mb-2 sm:mb-0 sm:text-left text-default-color flex flex-row  font-title flex-1 px-2">
+              <div className="h-12 w-12 rounded-[50%] bg-gray-100 mr-2 flex justify-center items-center text-gray-400">
+                <ProductIDIcon />
+              </div>
+              <input
+                placeholder="Product ID"
+                className={defaultSearchStyle}
+                {...register("productID")}
+              />
             </div>
-            <input
-              placeholder="Product ID"
-              className={defaultSearchStyle}
-              {...register("productID")}
-            />
-          </div>
-          <div className="mb-2 sm:mb-0 sm:text-left text-default-color flex flex-row font-title flex-1 px-2">
-            <div className="h-12 w-12 rounded-[50%] bg-gray-100 mr-2 flex justify-center items-center text-gray-400">
-              <ProductIcon />
+            <div className="mb-2 sm:mb-0 sm:text-left text-default-color flex flex-row font-title flex-1 px-2">
+              <div className="h-12 w-12 rounded-[50%] bg-gray-100 mr-2 flex justify-center items-center text-gray-400">
+                <ProductIcon />
+              </div>
+              <input
+                autoComplete="nope"
+                placeholder="Product Name"
+                className={defaultSearchStyle}
+                {...register("name")}
+              />
             </div>
-            <input
-              autoComplete="nope"
-              placeholder="Product Name"
-              className={defaultSearchStyle}
-              {...register("name")}
-            />
           </div>
         </div>
-      </div>
+      )}
 
       <div className="bg-white rounded-xl p-3">
         <div className="w-full flex">

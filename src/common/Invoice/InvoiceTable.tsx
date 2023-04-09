@@ -17,14 +17,7 @@ import EmptyBar from "../EmptyBar";
 import InvoiceIcon from "../../Icons/InvoiceIcon";
 import Button from "../Button/Button";
 import { useForm } from "react-hook-form";
-
-// Example items, to simulate fetching from another resources.
-const itemsPerPage = 10;
-const emptySearchForm = {
-  invoiceNo: "",
-  clientName: "",
-  amount: "",
-};
+import { useInvoiceDataContext } from "../../context/invoiceDataContext";
 
 type InvoiceDataProp = {
   id: string;
@@ -42,50 +35,8 @@ export type InvoiceSearchProp = Pick<
   "clientName" | "amount" | "invoiceNo"
 >;
 
-const invoiceData = [
-  {
-    id: "3",
-    invoiceNo: "",
-    clientName: "Akinsanmi",
-    email: "teset@gmail.com",
-    amount: "78790",
-    statusIndex: "good",
-    statusName: "checked",
-    totalAmount: "50461818",
-  },
-  {
-    id: "45",
-    invoiceNo: "",
-    clientName: "Lekan",
-    email: "teset@gmail.com",
-    amount: "09165789456",
-    statusIndex: "good",
-    statusName: "checked",
-    totalAmount: "50461818",
-  },
-  {
-    id: "14",
-    invoiceNo: "",
-    clientName: "tunmi",
-    email: "teset@gmail.com",
-    amount: "64279799",
-    statusIndex: "good",
-    statusName: "checked",
-    totalAmount: "50461818",
-  },
-  {
-    id: "4",
-    invoiceNo: "",
-    clientName: "Alraed",
-    email: "teset@gmail.com",
-    amount: "79499",
-    statusIndex: "good",
-    statusName: "checked",
-    totalAmount: "50461818",
-  },
-];
-
-function InvoiceTable() {
+function InvoiceTable({ showAdvanceSearch = false }) {
+  const { invoiceData } = useInvoiceDataContext();
   const { register, watch } = useForm<InvoiceSearchProp>();
   const formData = watch();
   const allInvoices = invoiceData;
@@ -100,13 +51,13 @@ function InvoiceTable() {
 
   useEffect(() => {
     let filterData = allInvoices.length > 0 ? allInvoices : [];
-    if (formData?.invoiceNo !== "") {
+    if (formData?.invoiceNo) {
       filterData = filterData.filter(invoice =>
         invoice.invoiceNo.includes(formData?.invoiceNo),
       );
     }
 
-    if (formData?.clientName !== "") {
+    if (formData?.clientName) {
       filterData = filterData.filter(invoice =>
         invoice.clientName.includes(formData?.clientName),
       );
@@ -139,73 +90,79 @@ function InvoiceTable() {
   // );
 
   return (
-    <div className="w-full h-full">
-      <div className="bg-white rounded-xl p-3 mb-3">
-        <p className="font-title mb-2">Advanced Search</p>
-        <div className="flex w-full sm:flex-col">
-          <div className="mb-2 sm:mb-0 sm:text-left text-default-color flex flex-row font-title flex-1 px-2">
-            <div className="h-12 w-12 rounded-[50%] bg-gray-100 mr-2 flex justify-center items-center">
-              <InvoiceIcon className="text-gray-400" />
-            </div>
-            <input
-              autoComplete="nope"
-              placeholder="Invoice No"
-              className={defaultSearchStyle}
-              {...register("invoiceNo")}
-            />
-          </div>
-          <div className="mb-2 sm:mb-0 sm:text-left text-default-color flex flex-row font-title flex-1 px-2">
-            <div className="h-12 w-12 rounded-[50%] bg-gray-100 mr-2 flex justify-center items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                  clipRule="evenodd"
+    <>
+      {showAdvanceSearch && (
+        <div>
+          <div className="bg-white rounded-xl p-3 mb-3">
+            <p className="font-title mb-2">Advanced Search</p>
+            <div className="flex w-full sm:flex-col">
+              <div className="mb-2 sm:mb-0 sm:text-left text-default-color flex flex-row font-title flex-1 px-2">
+                <div className="h-12 w-12 rounded-[50%] bg-gray-100 mr-2 flex justify-center items-center">
+                  <InvoiceIcon className="text-gray-400" />
+                </div>
+                <input
+                  autoComplete="nope"
+                  placeholder="Invoice No"
+                  className={defaultSearchStyle}
+                  {...register("invoiceNo")}
                 />
-              </svg>
-            </div>
-            <input
-              autoComplete="nope"
-              placeholder="Amount"
-              className={defaultSearchStyle}
-              {...register("amount")}
-            />
-          </div>
-          <div className="mb-2 sm:mb-0 sm:text-left text-default-color flex flex-row font-title flex-1 px-2">
-            <div className="h-12 w-12 rounded-[50%] bg-gray-100 mr-2 flex justify-center items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                  clipRule="evenodd"
+              </div>
+              <div className="mb-2 sm:mb-0 sm:text-left text-default-color flex flex-row font-title flex-1 px-2">
+                <div className="h-12 w-12 rounded-[50%] bg-gray-100 mr-2 flex justify-center items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-gray-400"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <input
+                  autoComplete="nope"
+                  placeholder="Amount"
+                  className={defaultSearchStyle}
+                  {...register("amount")}
                 />
-              </svg>
+              </div>
+              <div className="mb-2 sm:mb-0 sm:text-left text-default-color flex flex-row font-title flex-1 px-2">
+                <div className="h-12 w-12 rounded-[50%] bg-gray-100 mr-2 flex justify-center items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-gray-400"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <input
+                  autoComplete="nope"
+                  placeholder="User Name"
+                  className={defaultSearchStyle}
+                  {...register("clientName")}
+                />
+              </div>
             </div>
-            <input
-              autoComplete="nope"
-              placeholder="User Name"
-              className={defaultSearchStyle}
-              {...register("clientName")}
-            />
+          </div>
+          <div className="mb-3 flex justify-end">
+            <div>
+              <Button onClick={goToNewInvoice} block={true} size="xsmall">
+                <InvoiceIcon />
+                <span className="inline-block ml-2"> Add New Invoice </span>
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex justify-end mb-3">
-        <Button onClick={goToNewInvoice} block={true} size="xsmall">
-          <InvoiceIcon />
-          <span className="inline-block ml-2"> Add New Invoice </span>
-        </Button>
-      </div>
+      )}
 
       <div className="bg-white rounded-xl p-3">
         <div className="flex w-full ">
@@ -346,7 +303,7 @@ function InvoiceTable() {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

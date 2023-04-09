@@ -13,7 +13,7 @@ function ClientListScreen() {
 
       <div className="flex">
         <div className="w-[70%]  pl-4 pr-4 sm:pl-4 sm:pr-0 mb-4 sm:mb-1">
-          <ClientTable />
+          <ClientTable showAdvanceSearch />
         </div>
         <div className="w-[30%] p-4  sm:pl-4 sm:pr-2 bg-white rounded-xl mr-3">
           <QuickAddClient pageType={pageName} />

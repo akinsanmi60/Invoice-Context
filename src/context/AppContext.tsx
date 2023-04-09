@@ -18,6 +18,8 @@ type ContextType = {
   setInitLoading: (booleanValue: boolean) => void;
   setScreenLoading: (booleanValue: boolean) => void;
   setEscapeOverflow: (booleanValue: boolean) => void;
+  setSettingModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  settingModalOpen: boolean;
 };
 
 export const AppCtx = React.createContext({} as ContextType);
@@ -27,6 +29,7 @@ type ContextProps = {
 };
 
 export const AppContextProvider = ({ children }: ContextProps) => {
+  const [settingModalOpen, setSettingModalOpen] = useState(false);
   const [stateData, setStateData] = useState<InitDataProp>({
     showNavbar: true,
     darkTheme: false,
@@ -83,10 +86,12 @@ export const AppContextProvider = ({ children }: ContextProps) => {
       value={{
         stateData,
         setStateData,
+        settingModalOpen,
         toggleNavbar,
         setInitLoading,
         setScreenLoading,
         setEscapeOverflow,
+        setSettingModalOpen,
       }}
     >
       {children}

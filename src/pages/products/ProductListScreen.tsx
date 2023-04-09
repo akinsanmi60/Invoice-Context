@@ -12,7 +12,7 @@ function ProductListScreen() {
 
       <div className="flex">
         <div className="w-[70%] lg:w-4/6 pl-4 pr-4 sm:pl-4 sm:pr-0 mb-4 sm:mb-1">
-          <ProductTable />
+          <ProductTable showAdvanceSearch />
         </div>
         <div className="w-[30%] lg:w-2/6 pl-4 pr-4 sm:pl-4 sm:pr-2">
           <QuickAddProduct />

@@ -6,11 +6,14 @@ import InvoiceIcon from "../../Icons/InvoiceIcon";
 import Button from "../../common/Button/Button";
 import { useDisclosure } from "@chakra-ui/react";
 import { DrawerScreen } from "../../common/Drawer";
+import ClientTable from "../../common/Clients/ClientTable";
+import InvoiceTable from "../../common/Invoice/InvoiceTable";
+import ProductTable from "../../common/Product/ProductTable";
 
 function DashboardScreen() {
+  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const navigate = useNavigate();
   const goToNewInvoice = useCallback(() => {
     navigate("/invoices/new");
   }, [navigate]);
@@ -41,6 +44,19 @@ function DashboardScreen() {
         </div>
         <div className="w-full pl-4 pr-4 mb-4 sm:mb-1">
           <DashboardWidgets />
+        </div>
+
+        <div className="mt-6 pl-4 pr-4">
+          <PageTitle title="Client Table" />
+          <ClientTable />
+        </div>
+        <div className="mt-6 pl-4 pr-4">
+          <PageTitle title="Invoice Table" />
+          <InvoiceTable />
+        </div>
+        <div className="mt-6 pl-4 pr-4">
+          <PageTitle title="Product Table" />
+          <ProductTable />
         </div>
       </div>
       <DrawerScreen isOpen={isOpen} onClose={onClose} />

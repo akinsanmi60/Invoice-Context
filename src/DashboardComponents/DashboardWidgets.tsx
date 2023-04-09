@@ -6,12 +6,17 @@ import personjsonFile from "../lotties/lottie-persons.json";
 import productjsonFile from "../lotties/lottie-product.json";
 import invoicejsonFile from "../lotties/invoice-paper.json";
 import workersjsonFile from "../lotties/workers.json";
+import { useInvoiceDataContext } from "../context/invoiceDataContext";
+import { useClientDataContext } from "../context/clientDataContext";
 
 function DashboardWidgets() {
-  const clients = "0";
+  const { clientData } = useClientDataContext();
+  const { invoiceData } = useInvoiceDataContext();
+
+  const clients = clientData.length;
   const products = "0";
   const totalBalance = "0";
-  const allInvoices = "0";
+  const allInvoices = invoiceData.length;
 
   const dashValue = [
     {
@@ -46,7 +51,7 @@ function DashboardWidgets() {
       {dashValue?.map((items, i) => (
         <div className="w-full" key={i}>
           <div className="p-4 bg-slate-500 rounded-xl  hover:shadow-sm">
-            <div className="font-title">{items.title}</div>
+            <p className="text-[15px]">{items.title}</p>
             <div className="flex justify-between items-center">
               {/* Icon */}
               <div className="h-30">
